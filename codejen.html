@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Game</title>
+<meta charset="UTF-8">
+<style>
+#round {
+position:absolute;
+width:100px;
+height:100px;
+border-radius:100px;
+background-color: #3D1255 ;
+}
+
+
+#roundEnemy {
+position:absolute;
+width:100px;
+height:100px;
+border-radius:100px;
+background-color: red ;
+}
+
+#container {
+position:relative;
+width:800px;
+height:600px;
+border: thick solid #260339;
+background-color:#9775AA;
+float:left;
+}
+
+
+
+</style>
+</head>
+
+<body onload="letsbegin()">
+<h1 id="whoof" style="text-align:center; color:red;"> Catch the ball </h1>
+<h2 id="whoof2" style="text-align:center;" > Click on the purple ball to gain points. Avoid clicking the red ball. <br> You have 60 minutes in total. </h2>
+<div id="container" >  
+<div id="cover"> 
+<div id="round" onclick="scoreUp()" ></div> </div>
+<div id="roundEnemy" onclick="ender()" ></div>
+</div>
+<br> <br> <br> <br> <br>
+<div id="score" style="margin-left:900px;" > </div>
+<br style="clear:both;"> <br>
+
+<script>
+
+function letsbegin() {
+if(confirm("Do You Want To Continue?"))
+{ alert("Lets start"); 
+
+}
+
+else { 
+document.getElementById("round").style.display = "none";
+document.getElementById("container").style.display = "none";
+document.getElementById("whoof").style.display = "none";
+document.getElementById("whoof2").style.display = "none";
+alert("Too bad. You don't want to continue");
+}
+}
+var endIt = setInterval(function(){ run() }, 1000);
+var endIt2 = setInterval(function(){ enemyRun() }, 1000);
+
+setTimeout(gameEnder, 60000);
+s=0;
+g=1;
+h=1;
+x=1;
+y=1;
+
+function ender() {
+clearTimeout(endIt);
+clearTimeout(endIt2);
+
+document.getElementById("container").innerHTML = "<br> <br>  <br> <br> YOU LOST";
+document.getElementById("container").style.fontSize = "3em";
+document.getElementById("container").style.textAlign = "center";
+
+
+}
+
+function gameEnder() {
+document.getElementById("container").innerHTML = "<br> <br>  <br> <br> Time up <br> Your score is " +s;
+document.getElementById("container").style.fontSize = "3em";
+document.getElementById("container").style.textAlign = "center";
+document.getElementById("round").style.display = "none";
+}
+
+function scoreUp() {
+s+=1;
+document.getElementById("score").innerHTML="Your score is " + s;
+document.getElementById("score").style.fontSize = "2.5em";
+document.getElementById("score").style.color = "#260339";
+}
+
+function run() {
+if(x>0){
+x=Math.random() * 700;
+y=Math.random() * 500;
+
+document.getElementById("round").style.left = x+"px";
+document.getElementById("round").style.top = y+"px";
+}
+}
+
+function enemyRun() {
+if(g>0) {
+g=Math.random() * 700;
+h=Math.random() * 500;
+
+document.getElementById("roundEnemy").style.left = g+"px";
+document.getElementById("roundEnemy").style.top = h+"px";
+}
+}
+
+
+
+</script>  
+
+
+
+
+
+
+</body>
+
+</html>
